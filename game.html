@@ -18,6 +18,9 @@
     var paddleWidth = 75;
     var paddleX = (canvas.width-paddleWidth)/2;
 
+    var rightPressed = false;
+    var leftPressed = false;
+
     var x = canvas.width/2;
     var y = canvas.height-30;
     var dx = 2;
@@ -49,12 +52,30 @@
       if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
         dx = -dx;
       }
-
       if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
         dy = -dy;
       }
+    }
 
+    document.addEventListener("keydown", keyDownHandler, false);
+    document.addEventListener("keyup", keyUpHandler, false);
 
+    function keyDownHandler(e){
+      if(e.keycode == 39){
+        rightPressed = true;
+      }
+      else if(e.keycode ==37){
+        leftPressed = true;
+      }
+    }
+
+    function keyUpHandler(e){
+      if(e.keycode == 39){
+        rightPressed = false;
+      }
+      else if(e.keycode == 37){
+        leftPressed = false;
+      }
     }
     setInterval(draw, 10)
 
